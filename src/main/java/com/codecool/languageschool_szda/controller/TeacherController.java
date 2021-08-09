@@ -15,7 +15,9 @@ public class TeacherController {
 
     private TeacherService teacherService;
 
-    public TeacherController(TeacherService teacherService){this.teacherService=teacherService;}
+    public TeacherController(TeacherService teacherService) {
+        this.teacherService = teacherService;
+    }
 
     @GetMapping
     public List<Teacher> getAll() {
@@ -23,7 +25,7 @@ public class TeacherController {
     }
 
     @GetMapping("/{id}")
-    public Teacher getById(@PathVariable("id") Long id){
+    public Teacher getById(@PathVariable("id") Long id) {
         return teacherService.getById(id);
     }
 

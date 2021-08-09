@@ -13,7 +13,9 @@ import java.util.List;
 public class CourseController {
     private CourseService courseService;
 
-    public CourseController(CourseService courseService){this.courseService=courseService;}
+    public CourseController(CourseService courseService) {
+        this.courseService = courseService;
+    }
 
     @GetMapping
     public List<Course> getAll() {
@@ -21,7 +23,7 @@ public class CourseController {
     }
 
     @GetMapping("/{id}")
-    public Course getById(@PathVariable("id") Long id){
+    public Course getById(@PathVariable("id") Long id) {
         return courseService.getById(id);
     }
 
@@ -39,7 +41,6 @@ public class CourseController {
     public void deleteById(@PathVariable("id") Long id) {
         courseService.deleteById(id);
     }
-
 
 
 }

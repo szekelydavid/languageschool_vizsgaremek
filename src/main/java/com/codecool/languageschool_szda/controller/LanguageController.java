@@ -11,7 +11,9 @@ import java.util.List;
 public class LanguageController {
     private LanguageService languageService;
 
-    public LanguageController(LanguageService languageService){this.languageService=languageService;}
+    public LanguageController(LanguageService languageService) {
+        this.languageService = languageService;
+    }
 
     @GetMapping
     public List<Language> getAll() {
