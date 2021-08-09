@@ -3,14 +3,19 @@ package com.codecool.languageschool_szda.controller;
 import com.codecool.languageschool_szda.model.Course;
 import com.codecool.languageschool_szda.model.Teacher;
 import com.codecool.languageschool_szda.service.CourseService;
+import com.codecool.languageschool_szda.service.LanguageService;
 import com.codecool.languageschool_szda.service.TeacherService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@RestController
+@RequestMapping("/teacher")
 public class TeacherController {
 
-    TeacherService teacherService;
+    private TeacherService teacherService;
+
+    public TeacherController(TeacherService teacherService){this.teacherService=teacherService;}
 
     @GetMapping
     public List<Teacher> getAll() {

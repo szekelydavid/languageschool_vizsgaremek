@@ -3,6 +3,7 @@ package com.codecool.languageschool_szda.controller;
 import com.codecool.languageschool_szda.model.Course;
 import com.codecool.languageschool_szda.model.Language;
 import com.codecool.languageschool_szda.service.CourseService;
+import com.codecool.languageschool_szda.service.TeacherService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -10,7 +11,9 @@ import java.util.List;
 @RestController
 @RequestMapping("/course")
 public class CourseController {
-    CourseService courseService;
+    private CourseService courseService;
+
+    public CourseController(CourseService courseService){this.courseService=courseService;}
 
     @GetMapping
     public List<Course> getAll() {
