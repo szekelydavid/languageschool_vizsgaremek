@@ -5,6 +5,7 @@ import com.codecool.languageschool_szda.model.Teacher;
 import com.codecool.languageschool_szda.repository.CourseRepository;
 import com.codecool.languageschool_szda.repository.TeacherRepository;
 import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -14,6 +15,8 @@ import java.util.Optional;
 @AllArgsConstructor
 public class TeacherService {
     private TeacherRepository teacherRepository;
+    @Autowired
+    private LanguageService languageService;
 
     public Teacher getById(Long id) {
         Optional<Teacher> optionalTeacher = teacherRepository.findById(id);
@@ -30,6 +33,7 @@ public class TeacherService {
     }
 
     public Teacher add(Teacher teacher) {
+        teacher.getLanguages().forEach(language -> languageService.add(language));
         return teacherRepository.save(teacher);
     }
 
