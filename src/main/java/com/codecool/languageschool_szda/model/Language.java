@@ -18,9 +18,7 @@ public class Language {
     @Id
     @GeneratedValue
     private Long id;
-
     @ManyToMany
     private List<Teacher> teachers;
-
     private String name;
 }
