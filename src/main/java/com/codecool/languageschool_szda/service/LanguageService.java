@@ -32,7 +32,6 @@ public class LanguageService {
 
 
     public Language add(Language language) {
-        language.getTeachers().forEach(teacher -> teacherService.add(teacher));
         return languageRepository.save(language);
     }
 
