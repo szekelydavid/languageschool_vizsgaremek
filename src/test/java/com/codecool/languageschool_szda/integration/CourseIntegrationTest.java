@@ -1,8 +1,8 @@
 package com.codecool.languageschool_szda.integration;
 
 import com.codecool.languageschool_szda.model.Course;
-import java.util.ArrayList;
-import java.util.List;
+
+import java.util.*;
 
 import com.codecool.languageschool_szda.model.Teacher;
 import org.junit.jupiter.api.Assertions;
@@ -16,6 +16,7 @@ import org.springframework.boot.web.server.LocalServerPort;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.annotation.DirtiesContext.ClassMode;
 import org.springframework.test.context.ActiveProfiles;
@@ -55,7 +56,10 @@ public class CourseIntegrationTest {
         );
 
         Course testCourse = new Course(null,"angol_halado", "2001","2002",testTeacherOne);
-        testRestTemplate.postForObject(this.baseUrl, httpEntity, Course.class);
+        // ! hiba a postolással
+        testRestTemplate.postForEntity(this.baseUrl, httpEntity, Course.class);
+        ResponseEntity<Course[]> responseCourse = testRestTemplate.getForEntity(baseUrl,Course[].class);
+        List<Course> courseLista = Arrays.asList(responseCourse.getBody());
         Course getResult = testRestTemplate.getForObject(this.baseUrl+"/1", Course.class);
         Assertions.assertEquals(testCourse.getName(), getResult.getName());
     }
@@ -73,8 +77,8 @@ public class CourseIntegrationTest {
     public void getCourseById_withOnePostedCourse_returnsCourseWithSameId() {
         Teacher testTeacherOne = new Teacher();
         Course testCourse = new Course((Long)null,"angol_halado", "2001","2002",testTeacherOne);
-        testCourse = (Course)this.testRestTemplate.postForObject(this.baseUrl, testCourse, Course.class, new Object[0]);
-        Course result = (Course)this.testRestTemplate.getForObject(this.baseUrl + "/" + testCourse.getId(), Course.class);
+        testCourse = testRestTemplate.postForObject(this.baseUrl, testCourse, Course.class, new Object[0]);
+        Course result = testRestTemplate.getForObject(this.baseUrl + "/" + testCourse.getId(), Course.class);
         Assertions.assertEquals(testCourse.getId(), result.getId());
     }
 
@@ -82,10 +86,10 @@ public class CourseIntegrationTest {
     public void updateCourse_withOnePostedCourse_returnsUpdatedCourse() {
         Teacher testTeacherOne = new Teacher();
         Course testCourse = new Course((Long)null,"angol_halado", "2001","2002",testTeacherOne);
-        testCourse = (Course)this.testRestTemplate.postForObject(this.baseUrl, testCourse, Course.class, new Object[0]);
+        testCourse = testRestTemplate.postForObject(this.baseUrl, testCourse, Course.class, new Object[0]);
         testCourse.setName("Updated name");
         this.testRestTemplate.put(this.baseUrl, testCourse, new Object[0]);
-        Course updatedCourse = (Course)this.testRestTemplate.getForObject(this.baseUrl + "/" + testCourse.getId(), Course.class);
+        Course updatedCourse = testRestTemplate.getForObject(this.baseUrl + "/" + testCourse.getId(), Course.class);
         Assertions.assertEquals("Updated name", updatedCourse.getName());
     }
 
