@@ -18,6 +18,7 @@ public class Course {
     @Id
     @GeneratedValue
     private Long id;
+    private String name;
     private String start_date;
     private String end_date;
     @OneToOne
