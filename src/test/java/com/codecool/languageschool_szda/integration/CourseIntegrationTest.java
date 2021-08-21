@@ -28,7 +28,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
 @DirtiesContext(classMode = ClassMode.BEFORE_EACH_TEST_METHOD)
-@ActiveProfiles({"test"})
+
+//@ActiveProfiles({"test"})
+
 public class CourseIntegrationTest {
 
     @LocalServerPort
