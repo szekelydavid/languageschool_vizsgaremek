@@ -47,10 +47,7 @@ public class TeacherIntegrationTests {
         testTeacher = testRestTemplate.postForObject(this.baseUrl, testTeacher, Teacher.class);
         Teacher result = testRestTemplate.getForObject(this.baseUrl + "/" + testTeacher.getId(), Teacher.class);
         Assertions.assertEquals(testTeacher.getId(), result.getId());
-
     }
-
-
 
 
     @Test
@@ -83,7 +80,7 @@ public class TeacherIntegrationTests {
     }
 
     @Test
-    public void deleteCourseById_withSomePostedCourses_getAllShouldReturnRemainingCourse() {
+    public void deleteTeacherById_withSomePostedTeachers_getAllShouldReturnRemainingTeacher() {
         Language testLanguage = new Language();
         List<Language> testLanguageList = new ArrayList<Language>();
         testLanguageList.add(testLanguage);
@@ -95,16 +92,16 @@ public class TeacherIntegrationTests {
         testTeachers.add(testTeacherTwo);
         testTeachers.add(testTeacherThree);
         testTeachers.forEach((testTeacher) -> {
-            testTeacher.setId(((Course)this.testRestTemplate.postForObject(this.baseUrl, testTeacher, Course.class)).getId());
+            testTeacher.setId(((Teacher)this.testRestTemplate.postForObject(this.baseUrl, testTeacher, Teacher.class)).getId());
         });
         this.testRestTemplate.delete(this.baseUrl + "/" + testTeacherTwo.getId(), new Object[0]);
         testTeachers.remove(testTeacherTwo);
 
-        List<Teacher> remainingCourses = List.of((Teacher[])this.testRestTemplate.getForObject(this.baseUrl, Teacher[].class));
+        List<Teacher> remainingTeachers = List.of((Teacher[])this.testRestTemplate.getForObject(this.baseUrl, Teacher[].class));
 
-        Assertions.assertEquals(testTeachers.size(), remainingCourses.size());
+        Assertions.assertEquals(testTeachers.size(), remainingTeachers.size());
         for(int i = 0; i< testTeachers.size(); i++){
-            assertEquals(testTeachers.get(i).getName(), remainingCourses.get(i).getName());
+            assertEquals(testTeachers.get(i).getName(), remainingTeachers.get(i).getName());
         }
     }
 

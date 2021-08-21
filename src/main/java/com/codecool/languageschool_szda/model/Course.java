@@ -13,7 +13,7 @@ import javax.persistence.*;
 @Data
 public class Course {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
     private String start_date;
