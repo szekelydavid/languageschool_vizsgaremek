@@ -1,22 +1,14 @@
 package com.codecool.languageschool_szda.integration;
 
 import com.codecool.languageschool_szda.model.Course;
-
-import java.util.*;
-
 import com.codecool.languageschool_szda.model.Teacher;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.boot.web.server.LocalServerPort;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.annotation.DirtiesContext.ClassMode;
 import org.springframework.test.context.ActiveProfiles;
@@ -115,23 +107,22 @@ public class CourseIntegrationTest {
         Course testCourseOne = new Course((Long)null,"angol_halado", "2002","2002",testTeacherOne);
         Course testCourseTwo = new Course((Long)null,"nemet_kozep", "2000","2001",testTeacherOne);
         Course testCourseThree = new Course((Long)null,"japan", "2000","2003",testTeacherOne);
-        List<Course> testSongs = new ArrayList();
-        testSongs.add(testCourseOne);
-        testSongs.add(testCourseTwo);
-        testSongs.add(testCourseThree);
-        testSongs.forEach((testCourse) -> {
+        List<Course> testCourses = new ArrayList();
+        testCourses.add(testCourseOne);
+        testCourses.add(testCourseTwo);
+        testCourses.add(testCourseThree);
+        testCourses.forEach((testCourse) -> {
             testCourse.setId(((Course)this.testRestTemplate.postForObject(this.baseUrl, testCourse, Course.class)).getId());
         });
         this.testRestTemplate.delete(this.baseUrl + "/" + testCourseTwo.getId(), new Object[0]);
-        testSongs.remove(testCourseTwo);
+        testCourses.remove(testCourseTwo);
 
         List<Course> remainingCourses = List.of((Course[])this.testRestTemplate.getForObject(this.baseUrl, Course[].class));
 
-        Assertions.assertEquals(testSongs.size(), remainingCourses.size());
-        for(int i = 0; i< testSongs.size(); i++){
-            assertEquals(testSongs.get(i).getName(), remainingCourses.get(i).getName());
+        Assertions.assertEquals(testCourses.size(), remainingCourses.size());
+        for(int i = 0; i< testCourses.size(); i++){
+            assertEquals(testCourses.get(i).getName(), remainingCourses.get(i).getName());
         }
-
     }
 }
 
