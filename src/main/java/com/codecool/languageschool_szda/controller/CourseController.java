@@ -1,9 +1,7 @@
 package com.codecool.languageschool_szda.controller;
 
 import com.codecool.languageschool_szda.model.Course;
-import com.codecool.languageschool_szda.model.Language;
 import com.codecool.languageschool_szda.service.CourseService;
-import com.codecool.languageschool_szda.service.TeacherService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;

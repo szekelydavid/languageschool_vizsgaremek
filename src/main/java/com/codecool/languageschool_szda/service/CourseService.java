@@ -1,5 +1,4 @@
 package com.codecool.languageschool_szda.service;
-
 import com.codecool.languageschool_szda.model.Course;
 import com.codecool.languageschool_szda.repository.CourseRepository;
 import lombok.AllArgsConstructor;
