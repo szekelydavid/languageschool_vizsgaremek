@@ -29,7 +29,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
 @DirtiesContext(classMode = ClassMode.BEFORE_EACH_TEST_METHOD)
 
-//@ActiveProfiles({"test"})
+@ActiveProfiles({"test"})
 
 public class CourseIntegrationTest {
 
@@ -49,6 +49,7 @@ public class CourseIntegrationTest {
     @Test
     public void addNewCourse_emptyDatabase_shouldReturnSameCourse() {
 
+        /*
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
 
@@ -64,6 +65,19 @@ public class CourseIntegrationTest {
         List<Course> courseLista = Arrays.asList(responseCourse.getBody());
         Course getResult = testRestTemplate.getForObject(this.baseUrl+"/1", Course.class);
         Assertions.assertEquals(testCourse.getName(), getResult.getName());
+        */
+        /*
+        Teacher testTeacherOne = new Teacher();
+        Course testCourse = new Course(null,"angol_halado", "2001","2002",testTeacherOne);
+        Course result = testRestTemplate.postForObject(baseUrl, testCourse, Course.class);
+        assertEquals(testCourse.getName(), result.getName());
+        */
+        Teacher testTeacherOne = new Teacher();
+        Course testCourse = new Course((Long)null,"angol_halado", "2001","2002",testTeacherOne);
+        testCourse = testRestTemplate.postForObject(this.baseUrl, testCourse, Course.class);
+        Course result = testRestTemplate.getForObject(this.baseUrl + "/" + testCourse.getId(), Course.class);
+        Assertions.assertEquals(testCourse.getId(), result.getId());
+
     }
 
 
@@ -79,7 +93,7 @@ public class CourseIntegrationTest {
     public void getCourseById_withOnePostedCourse_returnsCourseWithSameId() {
         Teacher testTeacherOne = new Teacher();
         Course testCourse = new Course((Long)null,"angol_halado", "2001","2002",testTeacherOne);
-        testCourse = testRestTemplate.postForObject(this.baseUrl, testCourse, Course.class, new Object[0]);
+        testCourse = testRestTemplate.postForObject(this.baseUrl, testCourse, Course.class);
         Course result = testRestTemplate.getForObject(this.baseUrl + "/" + testCourse.getId(), Course.class);
         Assertions.assertEquals(testCourse.getId(), result.getId());
     }

@@ -5,10 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
 
 @Entity
 @NoArgsConstructor
@@ -21,6 +18,6 @@ public class Course {
     private String name;
     private String start_date;
     private String end_date;
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     private Teacher teacher;
 }
