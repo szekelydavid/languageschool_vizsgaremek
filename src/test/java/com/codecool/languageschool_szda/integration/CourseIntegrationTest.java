@@ -56,7 +56,7 @@ public class CourseIntegrationTest {
     @Test
     @Order(1)
     public void getCourse_emptyDatabase_returnsEmptyList() {
-        List<Course> courseList = List.of((Course[])this.testRestTemplate.getForObject(this.baseUrl, Course[].class));
+        List<Course> courseList = List.of(this.testRestTemplate.getForObject(this.baseUrl, Course[].class));
         Assertions.assertEquals(0, courseList.size());
     }
 
