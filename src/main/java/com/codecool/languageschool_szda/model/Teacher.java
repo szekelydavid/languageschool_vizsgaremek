@@ -20,6 +20,6 @@ public class Teacher {
     private int age;
     private String address;
     @JsonIgnoreProperties("teachers")
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.ALL)
     private List<Language> languages;
 }

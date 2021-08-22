@@ -17,7 +17,7 @@ public class Language {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @JsonIgnoreProperties("languages")
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.ALL)
     private List<Teacher> teachers;
     private String name;
 }

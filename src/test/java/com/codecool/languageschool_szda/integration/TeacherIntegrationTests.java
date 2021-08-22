@@ -67,7 +67,7 @@ public class TeacherIntegrationTests {
     }
 
     @Test
-    public void updateCourse_withOnePostedCourse_returnsUpdatedCourse() {
+    public void updateTeacher_withOnePostedTeacher_returnsUpdatedTeacher() {
         Language testLanguage = new Language();
         List<Language> testLanguageList = new ArrayList<Language>();
         testLanguageList.add(testLanguage);

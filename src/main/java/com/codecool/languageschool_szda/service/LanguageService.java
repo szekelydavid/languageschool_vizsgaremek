@@ -13,7 +13,6 @@ import java.util.Optional;
 public class LanguageService {
     private LanguageRepository languageRepository;
 
-    //@Autowired
     private TeacherService teacherService;
 
     public Language getById(Long id) {
