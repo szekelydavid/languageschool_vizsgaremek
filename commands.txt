@@ -1,0 +1,2 @@
+mvn -f app-demo/pom.xml clean install dependency:copy-dependencies
+docker build -t languageschool .
