@@ -84,7 +84,7 @@ public class LanguageUnitTest {
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.id", is(1)))
                 .andExpect(jsonPath("$.name", is("English")))
-                .andExpect(jsonPath("$.teachers", is(Arrays.asList(teacher1, teacher2))));
+                .andExpect(jsonPath("$.teachers.size()", is(2)));
     }
 
     @Test

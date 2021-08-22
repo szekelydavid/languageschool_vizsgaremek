@@ -80,16 +80,16 @@ public class CourseUnitTest {
     }
 
     @Test
-    public void findSpellById_shouldReturnLumos() throws Exception {
+    public void findTeacherById_shouldReturn() throws Exception {
         when(service.getById(1L)).thenReturn(course1);
 
         mockMvc.perform(get("/course/1"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.id", is(1)))
                 .andExpect(jsonPath("$.name", is("angol_alap")))
-                .andExpect(jsonPath("$.start_date", is(1988)))
-                .andExpect(jsonPath("$.end_date", is(1989)))
-                .andExpect(jsonPath("$.teacher", is(teacher1)));
+                .andExpect(jsonPath("$.start_date", is("1988")))
+                .andExpect(jsonPath("$.end_date", is("1989")))
+                .andExpect(jsonPath("$.teacher.name", is("Gilderoy Lockhart")));
     }
 /*
     @Test
