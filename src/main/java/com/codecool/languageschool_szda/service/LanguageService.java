@@ -1,6 +1,7 @@
 package com.codecool.languageschool_szda.service;
 
 import com.codecool.languageschool_szda.model.Language;
+import com.codecool.languageschool_szda.model.Teacher;
 import com.codecool.languageschool_szda.repository.LanguageRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -25,6 +26,9 @@ public class LanguageService {
         return languageRepository.findAll();
     }
 
+    public Language update(Language language) {
+        return languageRepository.save(language);
+    }
 
     public Language add(Language language) {
         return languageRepository.save(language);

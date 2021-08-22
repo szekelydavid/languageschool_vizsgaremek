@@ -22,8 +22,8 @@ public class CourseService {
         return courseRepository.findAll();
     }
 
-    public Course update(Course artist) {
-        return courseRepository.save(artist);
+    public Course update(Course course) {
+        return courseRepository.save(course);
     }
 
     public Course add(Course course) {

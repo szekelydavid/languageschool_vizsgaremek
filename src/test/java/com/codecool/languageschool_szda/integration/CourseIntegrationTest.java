@@ -104,9 +104,9 @@ public class CourseIntegrationTest {
     @Test
     public void deleteCourseById_withSomePostedCourses_getAllShouldReturnRemainingCourse() {
         Teacher testTeacherOne = new Teacher();
-        Course testCourseOne = new Course((Long)null,"angol_halado", "2002","2002",testTeacherOne);
-        Course testCourseTwo = new Course((Long)null,"nemet_kozep", "2000","2001",testTeacherOne);
-        Course testCourseThree = new Course((Long)null,"japan", "2000","2003",testTeacherOne);
+        Course testCourseOne = new Course(null,"angol_halado", "2002","2002",testTeacherOne);
+        Course testCourseTwo = new Course(null,"nemet_kozep", "2000","2001",testTeacherOne);
+        Course testCourseThree = new Course(null,"japan", "2000","2003",testTeacherOne);
         List<Course> testCourses = new ArrayList();
         testCourses.add(testCourseOne);
         testCourses.add(testCourseTwo);

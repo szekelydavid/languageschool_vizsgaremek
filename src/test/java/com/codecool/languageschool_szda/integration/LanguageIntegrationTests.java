@@ -72,7 +72,7 @@ public class LanguageIntegrationTests {
         List<Teacher> teachersListTest = new ArrayList<Teacher>();
         teachersListTest.add(testTeacherOne);
         Language testLanguage = new Language((Long)null,teachersListTest,"German");
-        testRestTemplate.postForObject(this.baseUrl, testLanguage, Language.class);
+        testLanguage= testRestTemplate.postForObject(this.baseUrl, testLanguage, Language.class);
         testLanguage.setName("Updated name");
         this.testRestTemplate.put(this.baseUrl, testLanguage, new Object[0]);
         Language updatedLanguage = testRestTemplate.getForObject(this.baseUrl + "/" + testLanguage.getId(), Language.class);

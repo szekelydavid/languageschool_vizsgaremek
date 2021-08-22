@@ -35,6 +35,10 @@ public class LanguageController {
         languageService.deleteById(id);
     }
 
+    @PutMapping
+    public Language update(@RequestBody Language language) {
+        return languageService.update(language);
+    }
 
 
 }
