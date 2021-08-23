@@ -91,13 +91,5 @@ public class CourseUnitTest {
                 .andExpect(jsonPath("$.end_date", is("1989")))
                 .andExpect(jsonPath("$.teacher.name", is("Gilderoy Lockhart")));
     }
-/*
-    @Test
-    public void findSpellById_shouldReturnNotFoundStatus() throws Exception {
-        when(service.getById(3L)).thenReturn(null);
 
-        mockMvc.perform(get("/course/3"))
-                .andExpect(status().isNotFound());
-    }
- */
 }

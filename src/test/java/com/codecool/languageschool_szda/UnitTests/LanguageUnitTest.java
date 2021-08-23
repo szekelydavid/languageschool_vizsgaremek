@@ -77,7 +77,7 @@ public class LanguageUnitTest {
     }
 
     @Test
-    public void findSpellById_shouldReturnLumos() throws Exception {
+    public void findCourseById_Test() throws Exception {
         when(service.getById(1L)).thenReturn(language1);
 
         mockMvc.perform(get("/language/1"))
@@ -87,11 +87,5 @@ public class LanguageUnitTest {
                 .andExpect(jsonPath("$.teachers.size()", is(2)));
     }
 
-    @Test
-    public void findSpellById_shouldReturnNotFoundStatus() throws Exception {
-        when(service.getById(3L)).thenReturn(null);
 
-        mockMvc.perform(get("/course/3"))
-                .andExpect(status().isNotFound());
-    }
 }
