@@ -2,6 +2,7 @@ package com.codecool.languageschool_szda.model;
 
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -11,6 +12,7 @@ import javax.persistence.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
+@Builder
 public class Course {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

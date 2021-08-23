@@ -4,6 +4,7 @@ import com.codecool.languageschool_szda.model.Course;
 import com.codecool.languageschool_szda.model.Teacher;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
@@ -39,31 +40,8 @@ public class CourseIntegrationTest {
     }
 
     @Test
+    @Order(2)
     public void addNewCourse_emptyDatabase_shouldReturnSameCourse() {
-
-        /*
-        HttpHeaders headers = new HttpHeaders();
-        headers.setContentType(MediaType.APPLICATION_JSON);
-
-        Teacher testTeacherOne = new Teacher();
-        HttpEntity<Course> httpEntity = new HttpEntity<>(
-                new Course(null,"angol_halado", "2001","2002",testTeacherOne),headers
-        );
-
-        Course testCourse = new Course(null,"angol_halado", "2001","2002",testTeacherOne);
-        // ! hiba a postolással
-        testRestTemplate.postForEntity(this.baseUrl, httpEntity, Course.class);
-        ResponseEntity<Course[]> responseCourse = testRestTemplate.getForEntity(baseUrl,Course[].class);
-        List<Course> courseLista = Arrays.asList(responseCourse.getBody());
-        Course getResult = testRestTemplate.getForObject(this.baseUrl+"/1", Course.class);
-        Assertions.assertEquals(testCourse.getName(), getResult.getName());
-        */
-        /*
-        Teacher testTeacherOne = new Teacher();
-        Course testCourse = new Course(null,"angol_halado", "2001","2002",testTeacherOne);
-        Course result = testRestTemplate.postForObject(baseUrl, testCourse, Course.class);
-        assertEquals(testCourse.getName(), result.getName());
-        */
         Teacher testTeacherOne = new Teacher();
         Course testCourse = new Course((Long)null,"angol_halado", "2001","2002",testTeacherOne);
         testCourse = testRestTemplate.postForObject(this.baseUrl, testCourse, Course.class);
@@ -76,12 +54,14 @@ public class CourseIntegrationTest {
 
 
     @Test
+    @Order(1)
     public void getCourse_emptyDatabase_returnsEmptyList() {
-        List<Course> songList = List.of((Course[])this.testRestTemplate.getForObject(this.baseUrl, Course[].class));
-        Assertions.assertEquals(0, songList.size());
+        List<Course> courseList = List.of(this.testRestTemplate.getForObject(this.baseUrl, Course[].class));
+        Assertions.assertEquals(0, courseList.size());
     }
 
     @Test
+    @Order(3)
     public void getCourseById_withOnePostedCourse_returnsCourseWithSameId() {
         Teacher testTeacherOne = new Teacher();
         Course testCourse = new Course((Long)null,"angol_halado", "2001","2002",testTeacherOne);
@@ -91,6 +71,7 @@ public class CourseIntegrationTest {
     }
 
     @Test
+    @Order(4)
     public void updateCourse_withOnePostedCourse_returnsUpdatedCourse() {
         Teacher testTeacherOne = new Teacher();
         Course testCourse = new Course((Long)null,"angol_halado", "2001","2002",testTeacherOne);
@@ -102,6 +83,7 @@ public class CourseIntegrationTest {
     }
 
     @Test
+    @Order(5)
     public void deleteCourseById_withSomePostedCourses_getAllShouldReturnRemainingCourse() {
         Teacher testTeacherOne = new Teacher();
         Course testCourseOne = new Course(null,"angol_halado", "2002","2002",testTeacherOne);

@@ -1,0 +1,21 @@
+version: '3'
+
+services:
+  languageschool-postgres:
+    image: postgres
+    restart: always
+    ports:
+      - '5434:5432'
+    environment:
+      POSTGRES_PASSWORD: almafa
+
+  languageschool-app:
+    image: languageschool
+    restart: always
+    ports:
+      - '8080:8080'
+    depends_on:
+      - languageschool-postgres
+    environment:
+      SPRING_DATASOURCE_URL: 'jdbc:postgresql://languageschool-postgres/postgres'
+    entrypoint: ['java', '-jar', 'languageschool.jar']

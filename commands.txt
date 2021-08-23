@@ -1,0 +1,4 @@
+
+docker build -t languageschool .
+cd languagesch"
+docker compose up
