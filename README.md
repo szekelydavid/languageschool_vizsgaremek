@@ -18,7 +18,6 @@ v 2021.07.15.
 Operation   | desc
 ------------ | -------------
 GET    /teachers  | Retrieve all Teachers from the DB, sorted alphabetically.
-Content in the first column | Content in the second column
 GET    /teachers 		 |  Retrieve all Teachers from the DB, sorted alphabetically.
 GET    /teachers/{id}    |  Retrieve a teacher and his courses using its id
 PUT    /teachers 		 |  UPDATE  a teachers DATA /JSON/
