@@ -1,5 +1,5 @@
 
-*NYELVTANÁR NYILVÁNTARTÓ | David Attila Szekely
+NYELVTANÁR NYILVÁNTARTÓ | David Attila Szekely
 v 2021.07.15.
 
 ```
